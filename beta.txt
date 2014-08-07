@@ -1,0 +1,289 @@
+3D-Analyzer - 22.07.2002
+
+Supplemental Readme Document, Rev. 0.94
+-------------------------------------------
+3DAnalyze.exe    : Control Application V1.5
+dat1.000         : DirectX(r) DX8 Core d3d8.dll
+dat2.000         : OpenGL(r) Core opengl32.dll
+LiesMich.txt     : ReadMe (German)
+ReadMe.txt       : ReadMe (English)
+releasenotes.txt : Version History
+beta.txt         : Supplemental Information (this file)
+
+Copyright ( 2002 Tommti Systems )
+All Rights Reserved
+
+Tommti Systems
+http://www.tommti-systems.com
+thomas@tommti-systems.com
+
+
+=======================================================================
+What's in this distribution?
+=======================================================================
+This distribution contains the Beta Release for public testing of
+target Applications.
+
+NOTE: DirectX 8.1 redistributable files must be used with this Tool!
+
+
+=======================================================================
+Disclaimer
+=======================================================================
+This Software is provided "as is" for the sole purpose of evaluation.
+
+Tommti Systems can not be held liable for any damage this program might
+cause. It is an unfinished, partly implemented Program meant for beta
+testing only. Use at your own Risk!
+
+
+=======================================================================
+Installation 
+=======================================================================
+
+Requirements
+------------
+
+- Windows 95,98,ME,2000,XP
+- PC with a Direct3D capable VGA Card
+- 1 GigaByte of free Harddisk space if Debug Logging is desired
+  (warrants approx. 150 seconds of live Debug time)
+
+
+=======================================================================
+Capabilities and Limitations
+=======================================================================
+
+The 3D Analyzer Tool was created and refined to overcome limitations
+posed by modern 3D Games and other Applications on several current
+mainstream 3D Cards.
+
+Basic functionality will equip non-T&L cards with a software substitute.
+
+Advanced functionality will enable User selectable 3D Features not
+available in many older Cards.
+Yet, this is presently achieved not by Emulation but by NUL-Rendering.
+This means, advanced 3D Features the Card is not capable of, are reported
+as available in Hardware, but have their calls intercepted and the
+respective 3D Features will not be rendered.
+
+These functions are based upon the premise and ideas, that :
+- 3D Games can be launched, that otherwise would fail due to lack of
+  Hardware support.
+- No 3D Game should solely rely on a few, isolated rendering features, and
+  therefor loss of image quality by NUL-Rendering 'should' be minimal and
+  acceptable in most cases.
+
+
+=======================================================================
+Overview
+=======================================================================
+
+This version is based on the original V1.3 but has been extended in
+capabilities to workaround 3dfx-specific limitations.
+It is used for Beta testing to aid in future development.
+
+Feel free to use on any DirectX8 or DirectX8.1 Application for testing.
+
+This Version is provided "as is" and is currently lacking fully
+operational implementation of desired features. It currently contains
+User selectable options, some of which use can cause the target
+Application to behave severely abnormal, crash or fail otherwise.
+
+Before using this Program, make sure all other Programs are closed.
+
+Note - Classic Options are explained in the standing V1.4beta ReadMe.
+
+
+=======================================================================
+What's new ?
+=======================================================================
+The V1.3 Version has been found to fail with many target Applications
+when used with 3dfx Voodoo based Cards.
+
+A "Hardware Limits" Block of Options have been created for each
+workaround required to overcome 3dfx Voodoo specific limitations,
+as explained below:
+
+- Emulate HW TnL caps
+
+Effect :
+This Option will Enable the basic DirectX 8.1 core Emulation.
+
+Status :
+Functional
+
+Limiting Factors :
+Will be recognized only by DirectX8 or DirectX8.1 applications.
+
+- Emulate Cube Maps caps
+
+Effect :
+This Option will report Cubic Mapped BumpMapping Hardware capability
+to the target Application.
+
+Status :
+Functional
+
+Limiting Factors :
+Any surface utilizing this Effect will not be rendered. This can
+lead to mis-colored Textures, as the Texture beneath is displayed
+unmodified.
+
+Future Goals :
+undetermined
+full Software Emulation is pending evaluation and/or prove-of concept
+
+- Emulate Pixel Shader caps
+
+Effect :
+This Option will report DirectX 8 compilant Vertex and Pixel Shader
+Hardware capability to the target Application.
+
+Status :
+Functional
+
+Limiting Factors :
+Surfaces utilizing this effect will be rendered faster, but with lower
+Texture detail, as no true Pixel Shader features are being rendered.
+
+- Emulate Bump Map caps
+
+Effect :
+This Option will report full BumpMapping and Envroinment Mapped
+BumpMapping Hardware capability to the target Application.
+
+Status :
+Functional
+
+Limiting Factors :
+Any surface utilizing this Effect will not be rendered. In some cases,
+this can lead to strongly mis-colored Textures (rainbow effect) as the
+original BumpMap is displayed unmodified.
+
+Future Goals :
+undetermined
+full Software Emulation is pending evaluation and/or prove-of concept
+
+- Emulate Max. sim. Textures
+
+Effect :
+This Option will report full single-pass, 4-layer Multitexturing
+Hardware capability to the target application.
+
+Status :
+Functional
+
+Limiting Factors :
+This Option will cause applications to use 4-layer Multitextures, of
+which only 2 will be effectively rendered. This will result in untextured
+and uncolored Objects, on which 4-layer Multitexturing is applied.
+In some cases, basic envroinmental Rendering techniques such as Lightmaps
+might not be rendered, causing undue decrease in visual Quality.
+
+Future Goals :
+undetermined
+Possibly create a workaround to render a full, second multitexture pass,
+or comparable rendering techniques as substitute.
+
+- Emulate other DX8.1 caps
+
+Effect :
+This Option will enable DirectX 8 Driver compatibility masking,
+regardless of actual Driver compatibility. It will also enable the
+advanced DirectX 8.1 Emulation core.
+
+Status :
+limited Functional
+
+Limiting Factors :
+Advanced DirectX8.1 Advanced Pixel Shader capability has not been fuly
+implemented yet. An Application accessing Advanced Pixel Shader
+capabilities can either behave severely abnormal or crash.
+
+Future Goals :
+undetermined
+Possibly achieve full Advanced Pixel Shader capabilities by CPU
+emulation.
+
+
+=======================================================================
+Developer Features
+=======================================================================
+A Debug Option is included in this Release.
+
+It should only be used for aquiring vital Debug information and is set
+to Disabled by default.
+
+When to use :
+- Applications failing to initialize or give Error Messages
+- Applications reporting missing Hardware Support where some should be
+  (recheck selected Emulation Options)
+- Applications exert severly abnormal behaviour not caused by known
+  Limiting Factors
+
+How to use :
+Depending on selected Application and .dll Directories, a log.out and
+a shader.out are generated, as soon as the Application is launched.
+Shader.out is presently not implemented and will maintain a file size
+of 0 Bytes.
+
+Before debugging, prepare the Application to launch only the 3D scene
+in question, if possible. This will isolate the problem as much as
+possible, and keep file size to a minimum.
+
+If an Application generates its own specific Logfiles, these should be
+retained for additional analysis as well.
+
+Warnings :
+----------
+When Debug Logging is active, upto several MegaBytes of Debug
+Information per Second can be generated! Depending on workload on the
+3D Analyzer Tool, this can lead to excessive HardDrive I/O operations.
+The Performance hit when using debug logging can be as significant as
+slowing 3D rendering down to well less than 1 frame per second!
+
+Do NOT allow Debug File to exceed available remaining Harddrive space!
+This can lead to severe crashes, and will render the debug file useless!
+
+One can expect (depending on rendering complexity) upto 400MB per
+Minute live rendering time.
+
+Hints :
+Even very large (1000 MegaByte) LogFiles can be very effectively
+compressed, using common Software like WinZIP, WinRAR or WinACE.
+1000 MegaBytes will result in an approx. 12MB compressed Filesize.
+
+
+=======================================================================
+Misc. Information
+=======================================================================
+This Readme complements the standing V1.4 beta Readme File.
+
+Effective use of this Tool requires full understanding of the embedded
+Features and Limiting Factors.
+
+When encountering errors or malfunctions, make sure these errors can be
+reproduced, and are not caused by any unrelated component of your system.
+
+This includes running Applications, which minimum requirements are not
+fully met even with the use of 3D Analyzer.
+
+
+-----------------------------------------------------------------------
+This document is subject to change, and may stand to be verified and
+corrected by the Developer.
+
+Alpha-Testing conducted by :
+
+FalconFly
+falconfly@ewetel.net
+http://www.falconfly.de
+
+AmigaMerlin
+Amigamerlin@3dfxzone.it
+http://www.3dfxzone.it
+
+
+
+Document generated in support by FalconFly, 08/06/2002
