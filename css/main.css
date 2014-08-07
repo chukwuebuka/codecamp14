@@ -4,5 +4,9 @@ text-decoration: none;
 #wrapper{
 max-width: 940px;
 margin: 0 auto;
-background: orange;
+padding: 0 5%;
+}
+#logo{
+	text-align: center;
+	margin: 0;
 }
