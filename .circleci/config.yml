@@ -13,21 +13,21 @@ jobs:
         - checkout
         - run:
             name: "Say My name"
-            command: echo "Chukwuebuka" > output.txt
+            command: echo "Chukwuebuka" > ~/output.txt
         - persist_to_workspace:
-              root: /tmp/workspace
+              root: ~/
               paths:
-                - target/output.txt
+                - output.txt
   print-myname:
     docker:
       - image: cimg/base:stable
     steps:
         - checkout
         - attach_workspace:
-            at: /tmp/workspace/target
+            at: ~/
         - run:
             name: "print My name"
-            command: cat  output.txt
+            command: cat ~/output.txt
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -35,4 +35,6 @@ workflows:
   say-hello-workflow:
     jobs:
       - save-myname
-      - print-myname
+      - print-myname:
+          requires:
+            - save-myname
