@@ -24,7 +24,7 @@ jobs:
     steps:
         - checkout
         - attach_workspace:
-          at: /tmp/workspace/target
+            at: /tmp/workspace/target
         - run:
             name: "print My name"
             command: cat  output.txt
